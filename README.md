@@ -1,0 +1,1 @@
+# Parallel-Implementation-of-the-Standard-Gradient-Descent-and-Linear-Regression
