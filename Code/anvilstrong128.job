@@ -1,0 +1,30 @@
+#!/bin/bash
+#----------------------------------------------------
+#SBATCH -J myjob # Job name
+#SBATCH -o myjob.o%j # Name of stdout output file
+#SBATCH -e myjob.e%j # Name of stderr error file
+#SBATCH -p shared # Queue (partition) name
+#SBATCH -N 1 # Total # of nodes (must be 1 for serial)
+#SBATCH -n 128 # Total # of cores to use
+#SBATCH -t 00:05:00 # Run time (hh:mm:ss)
+#SBATCH -A SEE230009 # Name of class allocation
+#SBATCH --mail-user=vpaineni@umassd.edu
+#SBATCH --mail-type=all # Send email at begin and end of job
+
+echo "Hello"
+
+# The "&" used below allows a program to run in the background.
+# For example, all four runs of the trap program will be running
+# at the same time. This is a simple form of parallel computing.
+# at the same time. This is a simple form of parallel computing.
+
+./parallel 1000 4 100000 1 >> StrongScaleTest1.dat
+./parallel 1000 4 100000 2 >> StrongScaleTest1.dat
+./parallel 1000 4 100000 4 >> StrongScaleTest1.dat
+./parallel 1000 4 100000 8 >> StrongScaleTest1.dat
+./parallel 1000 4 100000 16 >> StrongScaleTest1.dat
+./parallel 1000 4 100000 32 >> StrongScaleTest1.dat
+./parallel 1000 4 100000 64 >> StrongScaleTest1.dat
+./parallel 1000 4 100000 128 >> StrongScaleTest1.dat
+
+echo "Goodbye"
